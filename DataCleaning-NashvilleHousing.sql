@@ -3,8 +3,6 @@ SELECT * FROM DataCleaning..NashvilleHousing
 -- Standardize the data format
 SELECT SaleDate, CONVERT(Date, SaleDate) FROM DataCleaning..NashvilleHousing
 
-----UPDATE NashvilleHousing SET SaleDate = CONVERT(Date, SaleDate)
-
 ALTER TABLE NashvilleHousing
 ADD SaleDateConverted Date;
 
