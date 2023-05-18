@@ -32,8 +32,10 @@ AND a.[UniqueID ] <> b.[UniqueID ]
 WHERE a.PropertyAddress IS NULL
 
 
--- Breaking Out Address into individual columns (Address, City, State)
--- 1st: Property Address
+-- Breaking Out PropertyAddress  & OwnerAddress  into individual columns (Address, City, State)
+
+--1st: PropertyAddress
+
 SELECT PropertyAddress FROM DataCleaning..NashvilleHousing
 
 ----Address
@@ -43,7 +45,6 @@ FROM DataCleaning..NashvilleHousing
 ----City
 SELECT SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddress) +1, LEN(PropertyAddress)) as City
 FROM DataCleaning..NashvilleHousing
-
 
 
 ALTER TABLE NashvilleHousing
@@ -58,7 +59,7 @@ ADD PropertySplitCity Nvarchar(255);
 UPDATE NashvilleHousing SET PropertySplitCity = SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddress) +1, LEN(PropertyAddress))
 
 
--- 2nd: Owner Address (using Parsename)
+-- 2nd: Owner Address
 
 SELECT PARSENAME(REPLACE(OwnerAddress, ',', '.'), 3) as Address,
 	   PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2) as City,
@@ -124,7 +125,7 @@ DELETE FROM RowNumCTE
 WHERE row_num > 1
 
 
--- Delete Unused Columns (deleting data is not advised though)
+-- Delete Unused Columns (not advised)
 
 ALTER TABLE DataCleaning..NashvilleHousing
 DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress, SaleDate
