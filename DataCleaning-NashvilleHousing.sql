@@ -10,7 +10,7 @@ ADD SaleDateConverted Date;
 
 UPDATE NashvilleHousing SET SaleDateConverted = CONVERT(Date, SaleDate)
 
--- Populate Property Address Data (always do before the next step)
+-- Populate Property Address Data
 
 SELECT * FROM DataCleaning..NashvilleHousing
 WHERE PropertyAddress IS NULL
