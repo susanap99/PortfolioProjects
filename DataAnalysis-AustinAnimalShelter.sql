@@ -138,3 +138,6 @@ FROM outcomes
 SELECT sex_detail, COUNT(*) as nr_animals FROM sexCTE
 GROUP BY sex_detail
 ORDER BY COUNT(*) DESC
+
+
+-- I have a dashboard to visualize these insights published in my Tableau profile: https://public.tableau.com/app/profile/susana4478
